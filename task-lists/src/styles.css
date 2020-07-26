@@ -10,3 +10,8 @@ body {
     font-family: 'Poppins', sans-serif;
     overflow: hidden;
 }
+
+div.card-body {
+    height:500px;
+    overflow-y: scroll;
+}

@@ -1,0 +1,45 @@
+<!-- Inicio - lista de tarefas -->
+<div class="container">
+    <div class="row">
+        <div class="col-sm-12">
+            <!-- Inicio - tarefa -->
+            <div class="container" *ngFor="let task of allTasks$ | async">
+                <div class="row">
+                    <div class="col-sm-10">
+                        <!-- Inicio - campo input -->
+                        <div class="input-group mb-3" (dblclick)="changeEditableField(inputTask)">
+                            <div class="input-group-prepend">
+                                <div class="input-group-text">
+                                    <input type="checkbox" aria-label="Checkbox for following text input"
+                                        [checked]="task.statusTask"
+                                        (click)="changeStatusTask(task, inputStatus.checked)" #inputStatus>
+                                </div>
+                            </div>
+                            <input type="text" class="form-control" aria-label="Text input with checkbox"
+                                [value]="task.description" (blur)="updateTask(task, inputTask)" [disabled]="true"
+                                #inputTask>
+                        </div>
+                        <!-- Fim - campo input -->
+                    </div>
+                    <div class="col-sm-2">
+                        <!-- Inicio - campo remover -->
+                        <button type="button" class="btn btn-sm btn-danger" (click)="deleteTask(task)">Remover</button>
+                        <!-- Fim - campo remover -->
+                    </div>
+                </div>
+            </div>
+            <!-- Fim - tarefa -->
+        </div>
+    </div>
+</div>
+<!-- Fim - lista de tarefas -->
+
+<!-- Inicio - Modal Delete Task -->
+<ng-template #deleteModal>
+    <div class="modal-body text-center">
+        <p>Tem certeza que deseja remover essa tarefa?</p>
+        <button type="button" class="btn btn-default" (click)="onConfirmDelete()">Confirmar</button>
+        <button type="button" class="btn btn-primary" (click)="onDeclineDelete()">Cancelar</button>
+    </div>
+</ng-template>
+<!-- Fim - Modal Delete Task -->

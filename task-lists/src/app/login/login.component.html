@@ -4,7 +4,7 @@
             <img src="../images/task-login.svg">
         </div>
         <div class="login-content">
-            <form action="index.html">
+            <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
                 <img src="../images/Security-login.svg">
                 <h2 class="title">Login</h2>
                 <div class="input-div one" #divEmail>
@@ -14,7 +14,7 @@
                     <div class="div">
                         <h5>E-mail</h5>
                         <input type="email" class="input" (focus)="onFocus(divEmail)"
-                            (blur)="onBlur(divEmail, inputEmail)" #inputEmail>
+                            (blur)="onBlur(divEmail, inputEmail)" required #inputEmail>
                     </div>
                 </div>
                 <div class="input-div pass" #divPass>
@@ -24,14 +24,17 @@
                     <div class="div">
                         <h5>Senha</h5>
                         <input type="password" class="input" (focus)="onFocus(divPass)"
-                            (blur)="onBlur(divPass, inputPass)" #inputPass>
+                            (blur)="onBlur(divPass, inputPass)" required #inputPass>
                     </div>
                 </div>
                 <div class="row justify-content-end">
                     <a class="col-sm-6" href="https://github.com/GVBP/Desafio-Front-End-Fluig" target="_blank">Acessar o
                         GitHub</a>
                 </div>
-                <input type="submit" class="btn" value="Acessar">
+                <button [disabled]="loading" class="btn btn-primary">
+                    <span *ngIf="loading" class="spinner-border spinner-border-sm mr-1"></span>
+                    Acessar
+                </button>
             </form>
         </div>
     </div>
